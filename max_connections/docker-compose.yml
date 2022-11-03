@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+
+########################################
+##### NginX                        #####
+########################################
+
+  app_webserver:
+    image: nginx:1.23.2-alpine
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=lb.blk.com
+      - VIRTUAL_PORT=80
+      - TZ='Asia/Kolkata'
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - www
+      - common
+    ports:
+      - 8080:80
+
+networks:
+  www:
+    external: true
+  common:
+    driver: bridge

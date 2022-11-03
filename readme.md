@@ -1,2 +1,2 @@
-#NginX
-. How to use as load balancer
+# NginX
+1. How to use as load balancer
